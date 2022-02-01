@@ -18,6 +18,13 @@ form.create-note textarea {
   font-family: inherit;
   resize: none;
 }
+form.create-note textarea::-webkit-scrollbar {
+  display: none;
+}
+form.create-note textarea {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 form.create-note button {
   position: absolute;
   right: 18px;

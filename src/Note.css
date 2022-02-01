@@ -30,6 +30,44 @@
   outline: none;
 }
 
-.note button:hover{
-  color: red;
+.note .upd:hover {
+  color: rgb(245, 225, 46);
+}
+
+.note .del:hover {
+  color: rgb(236, 86, 86);
+}
+
+.input {
+  width: 100%;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-size: 1.2em;
+  font-family: inherit;
+  resize: none;
+}
+.input::-webkit-scrollbar {
+  display: none;
+}
+.input {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.btn-container {
+  float: right;
+  margin-right: 38px;
+}
+.btn {
+  margin-left: 10px;
+  border: none;
+  height: 36px;
+  cursor: pointer;
+  outline: none;
+  background: #f5ba13;
+  color: #fff;
+}
+.btn:hover {
+  background-color: rgb(245, 225, 46);
+  color: #fff;
 }

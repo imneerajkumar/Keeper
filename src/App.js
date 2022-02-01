@@ -42,6 +42,14 @@ function App() {
     });
   }
 
+  function updateNote(id, title, content) {
+    db.collection("notes").doc(id).update({
+      title: title,
+      content: content,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
+
   function deleteNote(id) {
     db.collection("notes").doc(id).delete();
   }
@@ -62,6 +70,7 @@ function App() {
                 title={note.data.title}
                 content={note.data.content}
                 onDelete={deleteNote}
+                onUpdate={updateNote}
               />
             ))}
           </div>
