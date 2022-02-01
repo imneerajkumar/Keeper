@@ -52,7 +52,7 @@ function App() {
         <Login />
       ) : (
         <div className="app__body">
-          <Header />
+          <Header keeps={keeps} />
           <CreateArea onAdd={addNote} />
           <div className="notes__area">
             {keeps.map(note => (
