@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./Note.css"
+import "./Note.css";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import Modal from '@material-ui/core/Modal';
-import { makeStyles } from '@material-ui/core/styles';
+import Modal from "@material-ui/core/Modal";
+import { makeStyles } from "@material-ui/core/styles";
 
 function getModalStyle() {
   const top = 50;
@@ -18,10 +18,10 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: 'absolute',
+    position: "absolute",
     width: 450,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #ccc',
+    border: "2px solid #ccc",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(1, 1, 2),
   },
@@ -33,7 +33,7 @@ function Note(props) {
   const [open, setOpen] = useState(false);
   const [note, setNote] = useState({
     title: props.title,
-    content: props.content
+    content: props.content,
   });
 
   function handleDelete() {
@@ -49,7 +49,7 @@ function Note(props) {
     setOpen(false);
     setNote({
       title: props.title,
-      content: props.content
+      content: props.content,
     });
   }
 
@@ -59,7 +59,7 @@ function Note(props) {
     setNote((prevNote) => {
       return {
         ...prevNote,
-        [name]: value
+        [name]: value,
       };
     });
   }

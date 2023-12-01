@@ -8,7 +8,7 @@ function CreateArea(props) {
   const [isExpanded, setExpanded] = useState(false);
   const [note, setNote] = useState({
     title: "",
-    content: ""
+    content: "",
   });
 
   function handleChange(event) {
@@ -17,23 +17,22 @@ function CreateArea(props) {
     setNote((prevNote) => {
       return {
         ...prevNote,
-        [name]: value
+        [name]: value,
       };
     });
   }
 
   function submitNote(event) {
-    if(note.title.length !== 0){
+    if (note.title.length !== 0) {
       props.onAdd(note);
       setNote({
         title: "",
-        content: ""
+        content: "",
       });
       event.preventDefault();
-    }
-    else {
+    } else {
       alert("Title cannot be empty");
-    }    
+    }
   }
 
   function expand() {

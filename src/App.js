@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import './App.css';
-import Login from "./Login";
-import Header from "./Header";
-import CreateArea from "./CreateArea";
-import Note from "./Note";
-import db from "./firebase";
-import { useStateValue } from './StateProvider';
+import "./App.css";
+import Login from "./components/Login/Login";
+import Header from "./components/Header/Header";
+import CreateArea from "./components/CreateArea/CreateArea";
+import Note from "./components/Note/Note";
+import db from "./utils/firebase";
+import { useStateValue } from "./utils/StateProvider";
 import firebase from "firebase";
 
 function App() {
@@ -15,30 +15,35 @@ function App() {
   const [keeps, setKeeps] = useState([]);
 
   useEffect(() => {
-    const unsubscribe = db.collection("notes").orderBy("timestamp", "desc").onSnapshot((snapshot) => 
-      setNotes(snapshot.docs.map((doc) => ({
-        id: doc.id,
-        data: doc.data()
-      })))  
-    );
-  
+    const unsubscribe = db
+      .collection("notes")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setNotes(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+
     return () => {
       unsubscribe();
-    }
+    };
   }, []);
 
   useEffect(() => {
     if (user) {
-      setKeeps(notes.filter((note) => (note.data.email === user.email)));
+      setKeeps(notes.filter((note) => note.data.email === user.email));
     }
-  }, [user, notes])
+  }, [user, notes]);
 
   function addNote(newNote) {
     db.collection("notes").add({
       email: user.email,
       title: newNote.title,
       content: newNote.content,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
   }
 
@@ -46,7 +51,7 @@ function App() {
     db.collection("notes").doc(id).update({
       title: title,
       content: content,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
   }
 
@@ -63,7 +68,7 @@ function App() {
           <Header keeps={keeps} />
           <CreateArea onAdd={addNote} />
           <div className="notes__area">
-            {keeps.map(note => (
+            {keeps.map((note) => (
               <Note
                 key={note.id}
                 id={note.id}
